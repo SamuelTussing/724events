@@ -23,5 +23,5 @@ const Menu = () => (
     </Button>
   </nav>
 );
-
+ 
 export default Menu;
