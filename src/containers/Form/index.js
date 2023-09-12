@@ -6,6 +6,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000); })
 
+
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
   const sendContact = useCallback(
@@ -16,6 +17,8 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        // Ajout de la ligne onSuccess //
+        onSuccess();
       } catch (err) {
         setSending(false);
         onError(err);
@@ -39,7 +42,7 @@ const Form = ({ onSuccess, onError }) => {
           <Field placeholder="" label="Email" />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
-          </Button>
+          </Button> 
         </div>
         <div className="col">
           <Field
