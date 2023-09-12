@@ -13,6 +13,8 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // a modifier car pas fonctionnel
   const filteredEvents = (
     (!type
       ? data?.events
@@ -26,10 +28,13 @@ const EventList = () => {
     }
     return false;
   });
+
+
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
+  console.log(filteredEvents)
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
   return (
@@ -73,4 +78,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default EventList; 

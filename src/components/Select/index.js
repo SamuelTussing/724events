@@ -59,7 +59,7 @@ const Select = ({
             setCollapsed(!collapsed);
           }}
         >
-          <Arrow />
+          <Arrow /> 
         </button>
       </div>
     </div>

@@ -42,4 +42,4 @@ EventCard.defaultProps = {
   small: false,
 }
 
-export default EventCard;
+export default EventCard; 
