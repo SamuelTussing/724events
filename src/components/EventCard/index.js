@@ -35,7 +35,7 @@ EventCard.propTypes = {
   title: PropTypes.string.isRequired,
   small: PropTypes.bool,
   label: PropTypes.string.isRequired,
-};
+}; 
 
 EventCard.defaultProps = {
   imageAlt: "image",

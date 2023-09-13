@@ -11,32 +11,39 @@ const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
+  // mise a jour du state de type à l'aide du bouton select
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+ 
   
-  // a modifier car pas fonctionnel
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
+  // filteredevent utilise le useState Type pour filtrer les events possédant le type
+  // indiqué par le bouton Select.
+  // on filtre donc d'abord les events par type avant de filtrer pour la pagination
+  
+  const filteredEvents = data?.events
+  .filter((event) => event.type === type || !type)
+  .filter((event, index) => {
+      if (
+          (currentPage - 1) * PER_PAGE <= index &&
+          PER_PAGE * currentPage > index
+      ) {
+          return true;
+      }
+      return false;
   });
+
 
 
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
-  console.log(filteredEvents)
+  
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  // on map les data pour récupérer les différentes catégories pour le bouton
   const typeList = new Set(data?.events.map((event) => event.type));
+
+  
   return (
     <>
       {error && <div>An error occured</div>}
@@ -47,7 +54,7 @@ const EventList = () => {
           <h3 className="SelectTitle">Catégories</h3>
           <Select
             selection={Array.from(typeList)}
-            onChange={(value) => (value ? changeType(value) : changeType(null))}
+            onChange={(value) => value ? changeType(value) : changeType(null)}
           />
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (

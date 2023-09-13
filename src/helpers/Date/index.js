@@ -10,7 +10,7 @@ export const MONTHS = {
   9: "septembre",
   10: "octobre",
   11: "novembre",
-  121: "décembre",
+  12: "décembre",
 };
 
 // ajout de +1 à la valeur de getMonth. car sinon on récupère l'index qui
