@@ -15,8 +15,8 @@ const Slider = () => {
 
   const nextCard = () => {
     setTimeout(
-      // index < byDateDesc.length-1 pour eviter une page blanvhe lorsque le slider arrive à la dernière image
-      () => setIndex(index < byDateDesc.length-1 ? index + 1 : 0),
+      // index +1 < byDateDesc.length pour eviter une page blanvhe lorsque le slider arrive à la dernière image
+      () => setIndex(index +1 < byDateDesc.length ? index + 1 : 0),
       5000
     );
   };
