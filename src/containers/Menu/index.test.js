@@ -10,6 +10,38 @@ describe("When Menu is created", () => {
     await screen.findByText("Contact");
   });
 
+  describe("and a click is triggered on a mandatorie link", () =>{
+    it("document location href change", async() =>{
+      render(<Menu/>);
+      fireEvent(
+        await screen.findByText("Nos services"),
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      expect(window.document.location.hash).toEqual("#nos-services")
+      fireEvent(
+        await screen.findByText("Nos réalisations"),
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      expect(window.document.location.hash).toEqual("#nos-realisations")
+      fireEvent(
+        await screen.findByText("Notre équipe"),
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      expect(window.document.location.hash).toEqual("#notre-equipe")
+    })
+  })
+
+
+
   describe("and a click is triggered on contact button", () => {
     it("document location  href change", async () => {
       render(<Menu />);
@@ -22,5 +54,6 @@ describe("When Menu is created", () => {
       );
       expect(window.document.location.hash).toEqual("#contact");
     });
+
   });
 });

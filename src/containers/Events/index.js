@@ -30,7 +30,7 @@ const EventList = () => {
           return true;
       }
       return false;
-  });
+  })|| [];
 
 
 
@@ -43,7 +43,6 @@ const EventList = () => {
   // on map les data pour récupérer les différentes catégories pour le bouton
   const typeList = new Set(data?.events.map((event) => event.type));
 
-  
   return (
     <>
       {error && <div>An error occured</div>}
